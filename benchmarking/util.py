@@ -23,8 +23,8 @@ def build_query_listings_join_reviews_datetime(start_date, end_date):
 	q1 = """
 SELECT DISTINCT l.id, l.name
 FROM listings l, reviews r
-WHERE l.id = r. listing_id AND r.date >= '"""
-	q2 = """' and r.date <= """
+WHERE l.id = r. listing_id AND r.datetime >= '"""
+	q2 = """' and r.datetime <= """
 	q3 = """'
 ORDER BY l.id;"""
 	return q1 + start_date + q2 + end_date + q3
