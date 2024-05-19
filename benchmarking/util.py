@@ -6,6 +6,8 @@ import pandas as pd
 import numpy as np
 import matplotlib as mpl
 
+from datetime import datetime
+
 def hello():
 	print("Hello world")
 
@@ -14,7 +16,7 @@ def build_query_listings_join_reviews(start_date, end_date):
 SELECT DISTINCT l.id, l.name
 FROM listings l, reviews r
 WHERE l.id = r. listing_id AND r.date >= '"""
-	q2 = """' and r.date <= """
+	q2 = """' and r.date <= '"""
 	q3 = """'
 ORDER BY l.id;"""
 	return q1 + start_date + q2 + end_date + q3
@@ -24,7 +26,7 @@ def build_query_listings_join_reviews_datetime(start_date, end_date):
 SELECT DISTINCT l.id, l.name
 FROM listings l, reviews r
 WHERE l.id = r. listing_id AND r.datetime >= '"""
-	q2 = """' and r.datetime <= """
+	q2 = """' and r.datetime <= '"""
 	q3 = """'
 ORDER BY l.id;"""
 	return q1 + start_date + q2 + end_date + q3
@@ -87,6 +89,9 @@ def build_index_description_key(all_index, spec):
     description_key += "__"
     return description_key
 
+def get_timestamp():
+    ct = datetime.now()
+    timestamp = str(ct.year) + '-' + str(ct.month) + '-' + str(ct.day) + '-' + str(ct.hour) + ':' + str(ct.minute) + ':' + str(ct.second)[0:2]
+    return timestamp
+    
 
-def newfunc():
-	print("test")
