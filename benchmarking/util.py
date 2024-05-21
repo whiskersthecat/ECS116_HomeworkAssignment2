@@ -93,5 +93,25 @@ def get_timestamp():
     ct = datetime.now()
     timestamp = str(ct.year) + '-' + str(ct.month) + '-' + str(ct.day) + '-' + str(ct.hour) + ':' + str(ct.minute) + ':' + str(ct.second)[0:2]
     return timestamp
-    
+
+# Function to rename keys and extract the year
+def rename_keys(data, start_string):
+    new_data = {}
+    for key, value in data.items():
+        if key.startswith(start_string):
+            year = key.split("_")[-1]
+            new_data[year] = value
+        else:
+            new_data[key] = value
+    return new_data
+
+# Extract all of the values over all date ranges
+def extract_values_with_metric(data, metric):
+    avg_values = {}
+    for year, details in data.items():
+        avg_values[year] = {}
+        for key, metrics in details.items():
+            if metric in metrics:
+                avg_values[year][key] = metrics[metric]
+    return avg_values
 
